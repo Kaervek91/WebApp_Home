@@ -1,6 +1,6 @@
-# CRUD-Example
+# WebApp-Home
 
-This is a base example in order to create a full stack application with Rest-API and somre practice.
+This is a base example in order to create a full stack application with Rest-API and some practice.
 
 ## Getting Started 🚀
 
