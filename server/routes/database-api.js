@@ -9,18 +9,20 @@ router.get('/devices/:id', device.getDeviceById);
 router.post('/devices', device.createDevice);
 router.put('/devices/:id', device.updateDeviceById);
 router.delete('/devices', device.removeDevices);
-router.delete('/devices', device.removeDeviceById);
+router.delete('/devices/:id', device.removeDeviceById);
 
-/*router.post('/device', (req,res)=>{
+/** DEVELOPMENT **/
+const Device = require('../models/devices.js');
+router.post('/matrixDevicesDev', (req,res)=>{
     let body = req.body;
     console.log(req.body);
-    model.create(body, (err, device) => {
+    Device.create(body, (err, device) => {
         if (err) throw err;
         res.status(200).json(device);
     })
     
 })
-
+/*
 // Update a Data
 router.put('/device/:id', (req,res)=>{
     model.findByIdAndUpdate(

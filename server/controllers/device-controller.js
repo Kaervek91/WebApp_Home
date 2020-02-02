@@ -14,18 +14,24 @@ deviceCtrl.getDeviceById = async (req,res) => {
 
 deviceCtrl.createDevice = async (req,res) => {
     const device = new Device(req.body);
-    await device.save();
-    res.json({status: "Device Saved"});      
+    console.log(req.body);
+    if(device.type != "" && device.description != "" ) {
+        await device.save();
+        res.json({status: "Device Saved"});          
+    } else {
+        //res.json({status: "Device Saved"});      
+    }
+    
 }
 
 deviceCtrl.updateDeviceById = async (req,res) => {
-    const {id} = req.params.id;
+    const id = req.params.id;
     const device = {
         type : req.body.type,
         description: req.body.description,
         value: req.body.value,
     };
-    await Device.findOneAndUpdate(id, {$set:device}, {new : true});
+    await Device.findByIdAndUpdate(id, {$set:device}, {new : true});
     res.json({status: "Device Updated"});
 }
 
@@ -34,8 +40,9 @@ deviceCtrl.removeDevices = async (req,res) => {
     res.json({status: "All Devices RemovedData"});
 }
 
-deviceCtrl.removeDeviceById = (req,res) => {
-    
+deviceCtrl.removeDeviceById = async (req,res) => {
+    await Device.findByIdAndRemove(req.params.id);
+    res.json({status: "All Devices RemovedData"});
 }
 
 module.exports = deviceCtrl;
