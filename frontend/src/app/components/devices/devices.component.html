@@ -1,0 +1,65 @@
+<div class="container">
+    <div class="row">
+        <div class ="col s5">
+            <div class="card">
+                <div class="card-content">
+                    <form #deviceForm="ngForm" (ngSubmit)="addDevice(deviceForm)">
+                        <input type="hidden" name="_id" #_id="ngModel" [(ngModel)]="deviceService.selectedDevice._id">
+                        <div class="row">
+                            <div class="input-field col s12">
+                                <input type="text" name="type" #type="ngModel" [(ngModel)]="deviceService.selectedDevice.type" placeholder="Enter the type">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="input-field col s12">
+                                <input type="text" name="description" #description="ngModel" [(ngModel)]="deviceService.selectedDevice.description" placeholder="Enter a description">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="input-field col s12">
+                                <input type="number" name="value" #value="ngModel" [(ngModel)]="deviceService.selectedDevice.value" placeholder="Enter a value">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col s12">
+                                <button class="btn right" style="margin-left: 2px">Save</button>
+                                <button class="btn right" (click)="resetForm(deviceForm)">Clean</button>
+                            </div>
+                        </div>
+                        
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class = "col s7">
+            <div class="card">
+                <div class="card-content">
+                    <button class="btn left" (click)="removeDevices()">Delete all</button>
+                </div>
+                <div class="card-content">
+                    <table>
+                        <thead>
+                            <th>Type</th>
+                            <th>Description</th>
+                            <th>Value</th>
+                            <th>Operations</th>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let device of deviceService.devices">
+                                <td>{{device.type}}</td>
+                                <td>{{device.description}}</td>
+                                <td>{{device.value}}</td>
+                                <td>
+                                    <div class="">
+                                        <a style="margin-left: 2px" (click)="editDevice(device)"><i class="material-icons">edit</i></a>
+                                        <a (click)="removeDevice(device)"><i class="material-icons">delete</i></a>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
