@@ -2,6 +2,7 @@ const express = require('express');
 const logger = require('morgan');
 const bodyParser = require('body-parser');
 const path = require('path');
+const cors = require('cors');
 const app = express();
 
 // Require connection to DB
@@ -20,6 +21,7 @@ app.use(logger('dev'));
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(express.urlencoded({extended: false})); // Comprender datos desde formularios
 app.use(express.json()); // Permite enviar y recibir datos en formato JSON
+app.use(cors({origin: 'http://localhost:4200'}));
 
 //Routes
 app.use('/', indexRoutes);
