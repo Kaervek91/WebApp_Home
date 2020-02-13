@@ -14,7 +14,7 @@ declare var M: any; // Materialize
 })
 export class DevicesComponent implements OnInit {
 
-  constructor( private deviceService : DeviceService) { 
+  constructor( public deviceService : DeviceService) { 
     
   }
 
@@ -87,7 +87,7 @@ export class DevicesComponent implements OnInit {
     
   }
 
-  removeDevices(device : Device) {
+  removeDevices() {
     if (confirm('Are you sure you want to delete all?')){
       this.deviceService.removeDevices()
         .subscribe( res=> {

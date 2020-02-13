@@ -1,16 +1,19 @@
 const express = require('express');
 const router = express.Router();
+const path = require('path');
 
 const Task = require('../models/tasks.js');
 
 router.get('/', (req, res) => {
+    res.sendFile(path.join(__dirname));
+    /*
     Task.find({},(err,tasks) =>{
         if(err) { console.log("Error present index.js"); throw err;}
         res.render("index", {
             title: 'CRUD API',
             tasks: tasks
         });
-    })
+    })*/
 })
 
 router.post('/add', (req,res)=>{
